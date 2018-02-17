@@ -12495,57 +12495,57 @@ h2.hero {
   margin-top: 20px; }
 
 /* line 86, /home/logan/workspace/beer-garden.io/stylesheets/styles.scss */
-footer {
+#bgfooter {
   background-color: #3c3d41;
   color: white;
   padding-top: 30px; }
 /* line 91, /home/logan/workspace/beer-garden.io/stylesheets/styles.scss */
-footer .footer-copyright {
+#bgfooter .footer-copyright {
   background-color: #333333;
   padding-top: 3px;
   padding-bottom: 3px;
   text-align: center; }
 /* line 96, /home/logan/workspace/beer-garden.io/stylesheets/styles.scss */
-footer .footer-copyright p {
+#bgfooter .footer-copyright p {
   margin: 10px;
   color: #ccc; }
 /* line 102, /home/logan/workspace/beer-garden.io/stylesheets/styles.scss */
-footer a {
+#bgfooter a {
   color: #d2d1d1;
   text-decoration: none; }
 /* line 107, /home/logan/workspace/beer-garden.io/stylesheets/styles.scss */
-footer a:hover {
+#bgfooter a:hover {
   text-decoration: none;
   color: white; }
 /* line 112, /home/logan/workspace/beer-garden.io/stylesheets/styles.scss */
-footer a:focus {
+#bgfooter a:focus {
   text-decoration: none;
   color: white; }
 /* line 117, /home/logan/workspace/beer-garden.io/stylesheets/styles.scss */
-footer ul {
+#bgfooter ul {
   list-style-type: none;
   padding-left: 0;
   line-height: 1.7; }
 /* line 123, /home/logan/workspace/beer-garden.io/stylesheets/styles.scss */
-footer h5 {
+#bgfooter h5 {
   font-size: 18px;
   color: white;
   font-weight: bold;
   margin-top: 30px; }
 /* line 130, /home/logan/workspace/beer-garden.io/stylesheets/styles.scss */
-footer .info {
+#bgfooter .info {
   text-align: justify;
   color: #afb0b1; }
 /* line 135, /home/logan/workspace/beer-garden.io/stylesheets/styles.scss */
-footer .row {
+#bgfooter .row {
   margin-bottom: 60px; }
 /* line 139, /home/logan/workspace/beer-garden.io/stylesheets/styles.scss */
-footer .social-networks {
+#bgfooter .social-networks {
   text-align: center;
   padding-top: 30px;
   padding-bottom: 38px; }
 /* line 144, /home/logan/workspace/beer-garden.io/stylesheets/styles.scss */
-footer .social-networks a {
+#bgfooter .social-networks a {
   font-size: 32px;
   margin-right: 5px;
   margin-left: 5px;
@@ -12553,13 +12553,13 @@ footer .social-networks a {
   padding: 10px;
   transition: 0.2s; }
 /* line 153, /home/logan/workspace/beer-garden.io/stylesheets/styles.scss */
-footer .social-networks a:hover {
+#bgfooter .social-networks a:hover {
   text-decoration: none; }
 /* line 157, /home/logan/workspace/beer-garden.io/stylesheets/styles.scss */
-footer .social-networks .github:hover {
+#bgfooter .social-networks .github:hover {
   color: #959595; }
 /* line 161, /home/logan/workspace/beer-garden.io/stylesheets/styles.scss */
-footer .social-networks .slack:hover {
+#bgfooter .social-networks .slack:hover {
   color: #e88b1d; }
 
 /* line 1, /home/logan/workspace/beer-garden.io/stylesheets/_asciidoctor-coderay.scss */
