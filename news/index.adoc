@@ -1,4 +1,0 @@
-= News
-:page-layout: about
-
-CAUTION: This section is under construction!

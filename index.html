@@ -1,0 +1,200 @@
+<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8 ]><!--><html class="no-js" lang="en"><!--<![endif]--><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="IE=edge"><link rel="stylesheet" href="/stylesheets/styles.css"><script src="/javascripts/jquery.js"></script><script src="/javascripts/bootstrap.min.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-113442079-2"></script><title>Beer Garden Documentation</title></head><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-113442079-2');</script><body class="antialiased"><div class="bootstrap"><nav class="navbar navbar-default navbar-fixed-top" role="navigation"><div class="container"><div class="navbar-header"><button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false"><span class="sr-only">Toggle Navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="/">Beer Garden</a></div><div class="collapse navbar-collapse" id="navbar-collapse-1"><ul class="nav navbar-nav navbar-right"><li><a href="/">Home</a></li><li class="divider"></li><li><a href="https://github.com/beer-garden/beer-garden">Code</a></li><li class="divider"></li><li><a href="https://beer-garden-io.slack.com">Discuss</a></li><li class="divider"></li><li><a href="/docs/">Docs</a></li></ul></div></div></nav><main><div class="bootstrap masthead"><div class="container"><h1 class="hero">Beer Garden</h1><p class="lead">A powerful plugin framework for converting your functions into composable, discoverable, production-ready services with minimal overhead. </p><div class="col-md-3 col-md-offset-3"><a class="btn btn-default btn-lg btn-nowrap" role="button" href="/docs/plugin-developer-guide/"><span class="pull-left"><i class="fa fa-pencil">  Start Writing Plugins!</i></span></a></div><div class="col-md-3"><a class="btn btn-default btn-lg btn-nowrap" role="button" href="https://github.com/beer-garden/beer-garden"><span class="pull-left"><i class="fa fa-github">  Checkout Code</i></span></a></div></div></div><div id="content"><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Beer Garden is a plugin framework that helps developers to create useful,
+streamlined, event-driven applications in a composable, and easily
+extensible way. Beer Garden is written in Python and has several packaging
+formats including python distributions, RPMs, and docker images. Beer Garden is open
+source, hosted on GitHub and is released under the MIT license.</p>
+</div>
+<div class="ulist compact">
+<div class="title">Key Documentation</div>
+<ul>
+<li>
+<p><a href="docs/what-is-beergarden/">What is Beer Garden?</a></p>
+</li>
+<li>
+<p><a href="docs/plugin-developer-guide/">Plugin Developer Guide</a></p>
+</li>
+<li>
+<p><a href="docs/installation-guides/">Installation Guides</a></p>
+</li>
+<li>
+<p><a href="docs/api-users-guide/">API Users Guide</a></p>
+</li>
+<li>
+<p><a href="docs/user-manual/">User Manual</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="beer-garden-in-a-nutshell"><a class="anchor" href="#beer-garden-in-a-nutshell"></a>Beer Garden in a Nutshell</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Beer Garden makes it easy to turn your functions into fully functional ReST interfaces that are ready for production use.  In short, the goal is to take anybody that knows how to write a function, and create all the other boilerplate code for them. This includes backing that function by a type-safe, discoverable, ReST interface and a fully functional web form-based interface that is easy-to-use for developers and end-users alike.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/screenshot.png" alt="Preview Plugin to HTML Form Screenshot"></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="requirements"><a class="anchor" href="#requirements"></a>Requirements</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Beer Garden depends on a few external services and requires the following to run:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Python (2.7 or &gt;= 3.5)</p>
+</li>
+<li>
+<p>Connectivity to MongoDB (&gt;= 3.2.0)</p>
+</li>
+<li>
+<p>Connectivity to RabbitMQ (&gt;= 3)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="installation"><a class="anchor" href="#installation"></a>Installation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Beer Garden can be installed using <code>pip</code>, <code>yum</code>, <code>docker</code> or <code>docker-compose</code>. Check out our <a href="docs/installation-guides/">Installation Guides</a> for more information on the different ways to install Beer Garden.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You probably noticed that beer-garden needs MongoDB and RabbitMQ to work. That&#8217;s why we recommend using <code>docker-compose</code> if you want to get up and running quickly - the compose configuration will handle those things for you.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="usage"><a class="anchor" href="#usage"></a>Usage</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>If you&#8217;re a developer and want to get your feet wet, we definitely recommend checking out the <a href="docs/quickstart">Quickstart section</a>.</p>
+</li>
+<li>
+<p>If you&#8217;re interested in administering your Beer Garden instance, the <a href="docs/installation-guides/">Installation Guides</a> have advice for administering your installations.</p>
+</li>
+<li>
+<p>If you already have Beer Garden and you want to figure out how to write plugins, checkout the <a href="docs/plugin-developer-guide">Plugin Developer Guide</a> for a detailed run-down of creating your very own plugins.</p>
+</li>
+<li>
+<p>If you already have Beer Garden and you already have plugins and you just want an easy way to use those plugins be sure to check out our <a href="docs/api-users-guide">API Users Guide</a> this will go over our REST Interface as well as python bindings that we provide.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getting-help"><a class="anchor" href="#getting-help"></a>Getting Help</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We want Beer Garden to help you <em>easily</em> write and use plugins. If there&#8217;s anything that&#8217;s unclear or difficult (or broken!) we want to know about it! Here are the best ways to get in touch with us:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Talk to us in <a href="https://beer-garden-io.slack.com">Slack Channel</a></p>
+</li>
+<li>
+<p>Sumbit an issue to the <a href="https://github.com/beer-garden/beer-garden/issues">Issue Tracker</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributing"><a class="anchor" href="#contributing"></a>Contributing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Beer Garden is open-source, and in the spirit of open-source software <em>everyone</em> is encouraged to help improve this project. If you discover errors or omissions in the source code, documentation, or website content please don&#8217;t hesitate to submit an issue or open a merge request. New contributors are always welcome!</p>
+</div>
+<div class="paragraph">
+<p>Check out the <a href="docs/contributing/">Contributing</a> guide to get started.</p>
+</div>
+<div class="paragraph">
+<p>Here are some ways <em>you</em> can contribute:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use the pre-release (development) versions</p>
+</li>
+<li>
+<p>Report bugs</p>
+</li>
+<li>
+<p>Suggest new features</p>
+</li>
+<li>
+<p>Write or edit the documentation</p>
+</li>
+<li>
+<p>Write code - <em>No patch is too small</em>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Fix typos</p>
+</li>
+<li>
+<p>Add comments</p>
+</li>
+<li>
+<p>Clean up whitespace</p>
+</li>
+<li>
+<p>Write tests</p>
+</li>
+<li>
+<p>Fix issues</p>
+</li>
+<li>
+<p>Refactor</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="credits"><a class="anchor" href="#credits"></a>Credits</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A huge shoutout to <a href="https://asciidoctor.org">the Asciidoctor Project</a>. This website is built with AsciiDoctor and was heavily influenced by the Asciidoctor website. It really is the best way to write documentation and we highly recommend you check it out!</p>
+</div>
+<div class="paragraph">
+<p>This website is hosted by <a href="https://pages.github.com/">GitHub Pages</a>. It makes deployment easy and cheap. You can use it for blogs, or documentation like this. You should really check it out if you haven&#8217;t.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="copyright-and-licensing"><a class="anchor" href="#copyright-and-licensing"></a>Copyright and Licensing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Free use of this software is granted under the terms of the MIT License. See the <a href="https://github.com/beer-garden/beer-garden/blob/master/LICENSE.md">LICENSE</a> file for details.</p>
+</div>
+</div>
+</div></div></main></div><footer><div class="container"><div class="row"><div class="col-sm-3"><h5>Get Started</h5><ul><li><a href="/">Home</a></li><li><a href="https://github.com/beer-garden/beer-garden/blob/master/CONTRIBUTING.md">Contribute</a></li></ul></div><div class="col-sm-3"><h5>About us</h5><ul><li><a href="https://github.com/beer-garden/beer-garden/blob/master/AUTHORS.md">Contributors</a></li><li><a href="/news">News</a></li></ul></div><div class="col-sm-3"><h5>Support</h5><ul><li><a href="https://beer-garden-io.slack.com">Slack</a></li></ul></div><div class="col-sm-3 info"><h5>Information</h5><p>Composed in AsciiDoc. Styled by bootstrap. Baked with Awestruct.</p></div></div></div><div class="social-networks"><a class="github" href="https://github.com/beer-garden/beer-garden"><i class="fa fa-github"></i></a><a class="slack" href="https://beer-garden-io.slack.com"><i class="fa fa-slack"></i></a></div><div class="footer-copyright"><p>© Beer Garden Project 2018.</p></div></footer></body><script>$('.toggle-navigation').click(function() { $('.navigation').toggle(); $('#docContent').toggleClass('col-lg-8'); $('#docContent').toggleClass('col-lg-12'); $('#docContent').toggleClass('top-buffer'); $('.toggle-target').toggleClass('off'); });</script>

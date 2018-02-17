@@ -1,0 +1,611 @@
+<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8 ]><!--><html class="no-js" lang="en"><!--<![endif]--><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="IE=edge"><link rel="stylesheet" href="/stylesheets/styles.css"><script src="/javascripts/jquery.js"></script><script src="/javascripts/bootstrap.min.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-113442079-2"></script><title>Beer Garden Documentation</title></head><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-113442079-2');</script><body class="antialiased"><div class="bootstrap"><nav class="navbar navbar-default navbar-fixed-top" role="navigation"><div class="container"><div class="navbar-header"><button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false"><span class="sr-only">Toggle Navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="/">Beer Garden</a></div><div class="collapse navbar-collapse" id="navbar-collapse-1"><ul class="nav navbar-nav navbar-right"><li><a href="/">Home</a></li><li class="divider"></li><li><a href="https://github.com/beer-garden/beer-garden">Code</a></li><li class="divider"></li><li><a href="https://beer-garden-io.slack.com">Discuss</a></li><li class="divider"></li><li><a href="/docs/">Docs</a></li></ul></div></div></nav><main><div class="bootstrap masthead"><div class="container"><h2 class="hero">Beer Garden Configuration</h2></div></div><div class="bootstrap container"><div class="row top-buffer"><div class="col-lg-4"><div class="col-lg-12"><div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups"><div class="btn-group mr-2" role="group" aria-label="First group"><button class="btn btn-default toggle-navigation" type="button" href="#"><span class="toggle-target"><i class="fa fa-toggle-on"></i><i class="fa fa-toggle-off"></i> Nav</span></button></div><div class="btn-group-mr-2 pull-right" role="group" aria-label="First Group"><a class="btn btn-default" href="https://github.com/beer-garden/beer-garden.io/edit/master//docs/configuration.adoc">Edit</a><a class="btn btn-default" href="https://github.com/beer-garden/beer-garden.io/raw/master//docs/configuration.adoc">Raw</a><a class="btn btn-default" href="https://github.com/beer-garden/beer-garden.io/commits/master//docs/configuration.adoc">History</a></div></div></div><div class="col-lg-12 navigation"><div id="toc" class="toc"><div class="title" id="toctitle">Table of Contents</div><ul class="sectlevel1">
+<li><a href="#configuration-files">Configuration Files</a></li>
+<li><a href="#logging-configuration">Logging Configuration</a></li>
+<li><a href="#bartender-configuration">Bartender Configuration</a></li>
+<li><a href="#brew-view-configuration">Brew View Configuration</a></li>
+<li><a href="#plugin-logging-configuration">Plugin Logging Configuration</a>
+<ul class="sectlevel2">
+<li><a href="#level">Level</a></li>
+<li><a href="#handlers">Handlers</a></li>
+<li><a href="#formatters">Formatters</a></li>
+<li><a href="#loggers">Loggers</a></li>
+</ul>
+</li>
+</ul></div></div></div><div class="col-lg-8" id="docContent"><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this guide, we will go over the configuration options in Beer Garden and how they affect the application. We will talk about the configuration at a high level, but we assume you have installed Beer Garden somehow.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuration-files"><a class="anchor" href="#configuration-files"></a>Configuration Files</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are 4 configuration files that come installed with Beer Garden. If you installed an RPM, you will find these in <code>/opt/beer-garden/conf</code> otherwise you can generate them through the commands <code>brew-view</code> and <code>bartender</code> provide. The default names are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>bartender-config.json</code></p>
+</li>
+<li>
+<p><code>bartender-logging-config.json</code></p>
+</li>
+<li>
+<p><code>brew-view-config.json</code></p>
+</li>
+<li>
+<p><code>brew-view-logging-config.json</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="logging-configuration"><a class="anchor" href="#logging-configuration"></a>Logging Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The logging configuration uses the standard python logging information. This can be edited as you see fit. If nothing is specified, Beer Garden will fall back to some basic defaults. You can generate a logging file through:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>generate_bartender_log_config -l bartender-logging-config.json
+generate_brew_view_log_config -l brew-view-logging-config.json</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="bartender-configuration"><a class="anchor" href="#bartender-configuration"></a>Bartender Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you do not have a <code>bartender-config.json</code> file, then you can generate one via:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>generate_bartender_config -c bartender-config.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you already have a <code>bartender-config.json</code> file, then you can upgrade it to the latest version via:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>migrate_bartender_config -c bartender-config.json</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Bartender Configuration Options</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Key</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>action_request_ttl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of minutes to wait before deleting ACTION requests</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>amq_admin_host</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">localhost</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hostname of the AMQ Admin host</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>amq_admin_port</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15672</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Port of the AMQ Admin host</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>amq_admin_user</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">guest</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Username to login to the AMQ admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>amq_admin_password</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">guest</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Password to login to the AMQ admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>amq_connection_attempts</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of retries to connect to AMQ</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>amq_exchange</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">beer_garden</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exchange name to use for AMQ</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>amq_heartbeat_interval</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3600</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Heartbeat interval for AMQ</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>amq_host</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">localhost</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hostname of AMQ to use</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>amq_port</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5672</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Port of the AMQ host</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>amq_publish_host</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">localhost</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Publicly accessible hostname for plugins to connect to</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>amq_password</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">guest</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Password to login to the AMQ host</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>amq_user</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">guest</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Username to login to the AMQ host</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>amq_virtual_host</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Virtual host to use for AMQ</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ca_cert</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to CA certificate file to use</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ca_verify</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">True</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify external certificates</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>config</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to configuration file to use</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>db_host</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">localhost</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hostname/IP of the database server</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>db_name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">beer_garden</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the database to use</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>db_password</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Password to connect to the database</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>db_port</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">27017</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Port of the database server</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>db_username</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Username to connect to the database</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>event_mongo_ttl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of minutes to wait before deleting events (negative number for never)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>log_config</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to a logging config file.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>log_file</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">File you would like the application to log to</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>log_level</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INFO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Log level for the application</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>info_request_ttl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of minutes to wait before deleting INFO request</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>max_thrift_workers</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">25</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum number of threads available to service incoming thrift calls</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>plugin_directory</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Directory where local plugins are located</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>plugin_log_directory</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Directory where local plugin logs should go</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>plugin_shutdown_timeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How long to wait for a local plugin to stop before killing it</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>plugin_startup_timeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How long to wait for a local plugin to start before determining it is dead</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>plugin_status_heartbeat</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Amount of time between status messages</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>plugin_status_timeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">30</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Amount of time to wait before marking a plugin as unresponsive</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ssl_enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">False</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Is the API server using SSL</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>thrift_host</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.0.0.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Host to bind the thrift server to</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>thrift_port</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9090</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Port to bind the thrift server to</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>url_prefix</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">URL prefix of the API server</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web_host</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">localhost</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hostname of the API server</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web_port</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2337</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Port of the API server</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="brew-view-configuration"><a class="anchor" href="#brew-view-configuration"></a>Brew View Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you do not have a <code>brew-view-config.json</code> file, then you can generate one via:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>generate_brew_view_config -c brew-view-config.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you already have a <code>brew-view-config.json</code> file, then you can upgrade it to the latest version via:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>migrate_brew_view_config -c brew-view-config.json</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 2. Brew View Configuration Options</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Key</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>allow_unsafe_templates</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">False</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allow unsafe templates to be loaded by the application</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>amq_admin_host</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">localhost</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hostname of the AMQ Admin host</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>amq_admin_port</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15672</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Port of the AMQ Admin host</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>amq_admin_user</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">guest</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Username to login to the AMQ admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>amq_admin_password</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">guest</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Password to login to the AMQ admin</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>amq_connection_attempts</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of retries to connect to AMQ</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>amq_host</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">localhost</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hostname of AMQ to use</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>amq_port</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5672</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Port of the AMQ host</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>amq_password</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">guest</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Password to login to the AMQ host</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>amq_user</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">guest</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Username to login to the AMQ host</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>amq_virtual_host</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Virtual host to use for AMQ</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>application_name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Beer Garden</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The title to display on the GUI</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>backend_host</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">localhost</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The hostname of the backend server</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>backend_port</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9090</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The port the backend server is bound to</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>backend_socket_timeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Time (in ms) to wait for backend to respond</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>config</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to configuration file to use</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cors_enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">False</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Determine if CORS should be enabled</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>db_host</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">localhost</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hostname/IP of the database server</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>db_name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">beer_garden</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the database to use</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>db_password</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Password to connect to the database</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>db_port</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">27017</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Port of the database server</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>db_username</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Username to connect to the database</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>debug_mode</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">False</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Run the application in debug mode (used mostly for development)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>event_amq_exchange</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exchange to use for AMQ events</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>event_amq_virtual_host</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Virtual host to use for AMQ events</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>event_persist_mongo</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">True</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Publish events to Mongo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>icon_default</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fa-beer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Default font-awesome icon to display</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>log_config</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to a logging config file.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>log_file</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">File you would like the application to log to</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>log_level</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INFO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Log level for the application</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>plugin_log_config</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to logging config to use for plugin logging</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>plugin_log_level</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INFO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Default level to use for plugin logging</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>public_fqdn</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">localhost</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Public fully-qualified domain name</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>shutdown_timeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How long to wait for Brew View to shutdown before terminating</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ssl_enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">False</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Should we use SSL on start-up</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ssl_private_key</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to a private key</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ssl_public_key</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to a public key</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>url_prefix</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">URL path prefix</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web_port</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2337</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Port to bind to</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="plugin-logging-configuration"><a class="anchor" href="#plugin-logging-configuration"></a>Plugin Logging Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As of Beer Garden 2.1.0, there is a new configuration file for plugin logging configurations. If this file is not included, a logging configuration is inferred from the logging configuration of the Beer Garden application itself. This logging configuration specifies how you would like plugins to log. A valid logging configuration can be found in <code>brew-view/dev_conf/example-plugin-logging-config.json</code>. Let&#8217;s examine what is allowed to go into this configuration.</p>
+</div>
+<div class="sect2">
+<h3 id="level"><a class="anchor" href="#level"></a>Level</h3>
+<div class="paragraph">
+<p>You may specify a default level that you would like all plugins to log at. This can be overwritten by <code>handlers</code>, or <code>loggers</code> entries. The supported levels are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>DEBUG</code></p>
+</li>
+<li>
+<p><code>INFO</code></p>
+</li>
+<li>
+<p><code>WARN</code></p>
+</li>
+<li>
+<p><code>ERROR</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="handlers"><a class="anchor" href="#handlers"></a>Handlers</h3>
+<div class="paragraph">
+<p>The <code>handlers</code> section is a dictionary which may contain one of the following keys:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>stdout</code></p>
+</li>
+<li>
+<p><code>file</code></p>
+</li>
+<li>
+<p><code>logstash</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Each of these keys can have their own configuration and can be overwritten in the <code>loggers</code> section. Other handlers are not yet supported.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="formatters"><a class="anchor" href="#formatters"></a>Formatters</h3>
+<div class="paragraph">
+<p>The <code>formatters</code> section is also a dictionary. Its keys must match up with a specific handler name or the name <code>default</code>. Here you can setup a special formatter for each of the individual handlers. The <code>handlers</code> should specify which <code>formatter</code> they would like to use.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="loggers"><a class="anchor" href="#loggers"></a>Loggers</h3>
+<div class="paragraph">
+<p>The <code>loggers</code> section allows you to specify a different logger per system name. If you wanted to customize the logger for a system called <code>foo</code> you could create an entry in the loggers section that looks like the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="json">{
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">foo</span><span class="delimiter">&quot;</span></span>: {
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">level</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">WARN</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">handlers</span><span class="delimiter">&quot;</span></span>: [<span class="string"><span class="delimiter">&quot;</span><span class="content">stdout</span><span class="delimiter">&quot;</span></span>],
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">formatters</span><span class="delimiter">&quot;</span></span>: {<span class="key"><span class="delimiter">&quot;</span><span class="content">stdout</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">%(message)s</span><span class="delimiter">&quot;</span></span>}
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This tells Beer Garden that when a system with the name <code>foo</code> asks for its logging configuration, that we should use this specialized configuration.</p>
+</div>
+</div>
+</div>
+</div></div><hr></div></div></main></div><footer><div class="container"><div class="row"><div class="col-sm-3"><h5>Get Started</h5><ul><li><a href="/">Home</a></li><li><a href="https://github.com/beer-garden/beer-garden/blob/master/CONTRIBUTING.md">Contribute</a></li></ul></div><div class="col-sm-3"><h5>About us</h5><ul><li><a href="https://github.com/beer-garden/beer-garden/blob/master/AUTHORS.md">Contributors</a></li><li><a href="/news">News</a></li></ul></div><div class="col-sm-3"><h5>Support</h5><ul><li><a href="https://beer-garden-io.slack.com">Slack</a></li></ul></div><div class="col-sm-3 info"><h5>Information</h5><p>Composed in AsciiDoc. Styled by bootstrap. Baked with Awestruct.</p></div></div></div><div class="social-networks"><a class="github" href="https://github.com/beer-garden/beer-garden"><i class="fa fa-github"></i></a><a class="slack" href="https://beer-garden-io.slack.com"><i class="fa fa-slack"></i></a></div><div class="footer-copyright"><p>© Beer Garden Project 2018.</p></div></footer></body><script>$('.toggle-navigation').click(function() { $('.navigation').toggle(); $('#docContent').toggleClass('col-lg-8'); $('#docContent').toggleClass('col-lg-12'); $('#docContent').toggleClass('top-buffer'); $('.toggle-target').toggleClass('off'); });</script>
