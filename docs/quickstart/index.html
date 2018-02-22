@@ -50,20 +50,7 @@ cd beer-garden/docker/docker-compose</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Open up the <code>conf/bartender-config.json</code> file and find the line that looks like this:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>"amq_publish_host": "CHANGE_ME_PLEASE",</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Change <code>CHANGE_ME_PLEASE</code> to the IP address of your system.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>"amq_publish_host": "WWW.XXX.YYY.ZZZ",</pre>
-</div>
+<p>Beer Garden needs to inform remote plugins the hostname of the RabbitMQ instance that they should connect to for message. This value is set as the <code>BG_AMQ_PUBLISH_HOST</code> in the environment or <code>amq_publish_host</code> in config/command-line arguments. By default in the <code>docker-compose.yml</code> it will be <code>rabbitmq</code>. This will work for containers running on the same network, but if a truly remote plugin exists, you may need to change the value to a resolvable hostname or IP address on the network.</p>
 </div>
 <div class="admonitionblock caution">
 <table>
@@ -147,17 +134,29 @@ cd $HOME/my_plugin</pre>
     client = MyClient()
     plugin = RemotePlugin(client, name=<span class="string"><span class="delimiter">&quot;</span><span class="content">my-plugin</span><span class="delimiter">&quot;</span></span>,
                           version=<span class="string"><span class="delimiter">&quot;</span><span class="content">0.0.1.dev0</span><span class="delimiter">&quot;</span></span>,
-                          bg_host=<span class="string"><span class="delimiter">'</span><span class="content">YOUR_IP</span><span class="delimiter">'</span></span>,
+                          bg_host=<span class="string"><span class="delimiter">'</span><span class="content">brew-view</span><span class="delimiter">'</span></span>,
                           bg_port=<span class="integer">2337</span>, ssl_enabled=<span class="predefined-constant">False</span>)
     plugin.run()</code></pre>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you are not going to run this plugin inside docker, you might need to change <code>bg_host='brew-view'</code> to your FQDN or IP address on which Beer Garden is running.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
-<p>Update <code>bg_host='YOUR_IP'</code> to be your own IP address. Now you can simply run your plugin using one of the images we provide!</p>
+<p>Now you can simply run your plugin using one of the images we provide!</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code>docker run -v $(pwd):/src \
+<pre class="CodeRay highlight"><code>docker run -v $(pwd):/src --network dockercompose_bg-network \
 bgio/plugins:python3</code></pre>
 </div>
 </div>

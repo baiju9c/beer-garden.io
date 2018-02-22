@@ -66,20 +66,7 @@ You can checkout all the options for configuration in the <a href="../../configu
 </table>
 </div>
 <div class="paragraph">
-<p>Open up the <code>conf/bartender-config.json</code> file and find the line that looks like this:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>"amq_publish_host": "CHANGE_ME_PLEASE",</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Change <code>CHANGE_ME_PLEASE</code> to the IP address of your system.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>"amq_publish_host": "WWW.XXX.YYY.ZZZ",</pre>
-</div>
+<p>Beer Garden needs to inform remote plugins the hostname of the RabbitMQ instance that they should connect to for message. This value is set as the <code>BG_AMQ_PUBLISH_HOST</code> in the environment or <code>amq_publish_host</code> in config/command-line arguments. By default in the <code>docker-compose.yml</code> it will be <code>rabbitmq</code>. This will work for containers running on the same network, but if a truly remote plugin exists, you may need to change the value to a resolvable hostname or IP address on the network.</p>
 </div>
 <div class="admonitionblock caution">
 <table>
