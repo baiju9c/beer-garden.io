@@ -586,14 +586,14 @@ table.CodeRay td.code>pre{padding:0}
 <div class="title">event.json</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="json">{
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">REQUEST_CREATED</span><span class="delimiter">&quot;</span></span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">timestamp</span><span class="delimiter">&quot;</span></span>: <span class="integer">1521126132897</span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">error</span><span class="delimiter">&quot;</span></span>: <span class="error">N</span><span class="error">o</span><span class="error">n</span><span class="error">e</span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">metadata</span><span class="delimiter">&quot;</span></span>: {
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">REQUEST_CREATED</span><span class="delimiter">&quot;</span></span>, <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">timestamp</span><span class="delimiter">&quot;</span></span>: <span class="integer">1521126132897</span>, <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">error</span><span class="delimiter">&quot;</span></span>: <span class="error">N</span><span class="error">o</span><span class="error">n</span><span class="error">e</span>, <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">metadata</span><span class="delimiter">&quot;</span></span>: { <i class="conum" data-value="4"></i><b>(4)</b>
         <span class="key"><span class="delimiter">&quot;</span><span class="content">entity_url</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">https://this.is.beergarden:443/api/v1/requests/5aaa8af45991735bf1a6c123</span><span class="delimiter">&quot;</span></span>,
         <span class="key"><span class="delimiter">&quot;</span><span class="content">public_url</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">https://this.is.beergarden:443/</span><span class="delimiter">&quot;</span></span>
     },
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">payload</span><span class="delimiter">&quot;</span></span>: {
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">payload</span><span class="delimiter">&quot;</span></span>: { <i class="conum" data-value="5"></i><b>(5)</b>
         <span class="key"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">5aaa8af45991735bf1a6c123</span><span class="delimiter">&quot;</span></span>,
         <span class="key"><span class="delimiter">&quot;</span><span class="content">command</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">say</span><span class="delimiter">&quot;</span></span>,
         <span class="key"><span class="delimiter">&quot;</span><span class="content">system</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">echo</span><span class="delimiter">&quot;</span></span>,
@@ -603,13 +603,29 @@ table.CodeRay td.code>pre{padding:0}
 }</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Some things to notice:
-* All events will have a name
-* All events will have a timestamp (milliseconds since the epoch)
-* All events will have an error flag (boolean, None being equivalent to False)
-* Events may have a metadata field. This will contain 'extra' useful information, but will normally include at the the public url of the Beer Garden that generated the Event. Events that relate to a specific entity will also include a url that can be used to retrieve the full entity definition.
-* All events will have a payload. The specific data included will vary based on event type.</p>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>All events will have a name</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>All events will have a timestamp (milliseconds since the epoch)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>All events will have an error flag (boolean, None being equivalent to False)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Events may have a metadata field. This will contain 'extra' useful information, but will normally include at the the public url of the Beer Garden that generated the Event. Events that relate to a specific entity will also include a url that can be used to retrieve the full entity definition.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>All events will have a payload. The specific data included will vary based on event type.</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
@@ -645,8 +661,17 @@ table.CodeRay td.code>pre{padding:0}
 }</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>WARN: Beer Garden doesn&#8217;t create an exchange for events. While you <em>could</em> use the normal Beer Garden request exchange we recommend you don&#8217;t. Instead, you should create a separate exchange. Check the RabbitMQ docs for instructions on how to do this.</p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Beer Garden doesn&#8217;t create an exchange for events. While you <em>could</em> use the normal Beer Garden request exchange we recommend you don&#8217;t. Instead, you should create a separate exchange. Check the RabbitMQ docs for instructions on how to do this.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>To consume from RabbitMQ, you&#8217;ll need to create a queue on the same virtual host as <code>event_amq_virtual_host</code> and then bind that queue to a routing key on the <code>event_amq_exchange</code>. To receive all events you can bind to the <code>#</code> routing key. If you want to filter which events your queue will receive there are some rules about how Beer Garden assigns routing keys to events:</p>
@@ -665,8 +690,17 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 <div class="sect3">
 <h4 id="publishing-custom-events"><a class="anchor" href="#publishing-custom-events"></a>Publishing Custom Events</h4>
-<div class="paragraph">
-<p>WARN: This is a beta capability</p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This is a beta capability
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>It&#8217;s possible to publish your own events. Just POST a valid Event to the <code>/api/vbeta/events</code> endpoint. The brewtils EasyClient <code>publish_event</code> method can help with this.</p>
@@ -676,7 +710,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-15 13:06:59 EDT
+Last updated 2018-03-15 13:10:21 EDT
 </div>
 </div>
 </body>
