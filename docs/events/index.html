@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.6.1">
-<title>beer-garden.io</title>
+<title>Event Notifications</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
 /* Remove comment around @import statement below when using as a custom stylesheet */
@@ -518,173 +518,169 @@ table.CodeRay td.code>pre{padding:0}
 </head>
 <body class="article">
 <div id="header">
-<h1>beer-garden.io</h1>
 </div>
 <div id="content">
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>The documentation for
-<a href="https://github.com/beer-garden/beer-garden/">beer-garden</a>
-project. Composed in AsciiDoc, styled by Bootstrap, baked with Awestruct and
-published by Github Pages.</p>
-</div>
-<div class="paragraph">
-<p>For instructions on how to install Awestruct and its dependencies, refer to
-the section <a href="#install-awestruct">Install Awestruct</a> below.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="preview-the-site-locally"><a class="anchor" href="#preview-the-site-locally"></a>Preview the site locally</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To preview the site locally, simply run the default rake build task:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>rake</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The default rake build task is preview, so you&#8217;re effectively typing:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>rake preview</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>the preview task is just a short way of invoking Awestruct in development
-mode directly:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>awestruct -d --source-dir source --output-dir public</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Now visit <a href="http://localhost:4242" class="bare">http://localhost:4242</a> to preview the site</p>
-</div>
-<div class="paragraph">
-<p>To rebuild the site from a clean state, pass the --force flag to the preview
-task:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>rake preview[--force]</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You can pass any flag through to Awestruct using the syntax in the previous
-command.</p>
-</div>
-<div class="paragraph">
-<p>If you just want to generate the site, run:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>rake gen</pre>
-</div>
-</div>
 <div class="sect2">
-<h3 id="add-and-commit-files"><a class="anchor" href="#add-and-commit-files"></a>Add and commit files</h3>
+<h3 id="event-notifications"><a class="anchor" href="#event-notifications"></a>Event Notifications</h3>
 <div class="paragraph">
-<p>Add new files (such as new tutorials, etc):</p>
+<p>Sometimes, particularly if you&#8217;re integrating with Beer Garden, it can be helpful to know when certain things happen. To make this process as easy as possible Beer Garden supports the concept of <em>event notifications</em>.</p>
 </div>
-<div class="literalblock">
+<div class="paragraph">
+<p>Events are generated whenever any of the following events occur:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Bartender started</p>
+</li>
+<li>
+<p>Bartender stopped</p>
+</li>
+<li>
+<p>Brew view started</p>
+</li>
+<li>
+<p>Brew view stopped</p>
+</li>
+<li>
+<p>Request created</p>
+</li>
+<li>
+<p>Request started</p>
+</li>
+<li>
+<p>Request completed</p>
+</li>
+<li>
+<p>Instance initialized</p>
+</li>
+<li>
+<p>Instance started</p>
+</li>
+<li>
+<p>Instance stopped</p>
+</li>
+<li>
+<p>System created</p>
+</li>
+<li>
+<p>System updated</p>
+</li>
+<li>
+<p>System removed</p>
+</li>
+<li>
+<p>Queue cleared</p>
+</li>
+<li>
+<p>All queues cleared</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="event-structure"><a class="anchor" href="#event-structure"></a>Event Structure</h4>
+<div class="paragraph">
+<p>Events will always be well-formed JSON. Here&#8217;s an example of an event:</p>
+</div>
+<div class="listingblock">
 <div class="content">
-<pre>git add tutorials/my-tutorial.adoc</pre>
+<pre class="CodeRay highlight"><code data-lang="json"><span class="error">e</span><span class="error">v</span><span class="error">e</span><span class="error">n</span><span class="error">t</span><span class="error">.</span><span class="error">j</span><span class="error">s</span><span class="error">o</span><span class="error">n</span>
+<span class="error">-</span><span class="error">-</span><span class="error">-</span><span class="error">-</span>
+{
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">REQUEST_CREATED</span><span class="delimiter">&quot;</span></span>, <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">timestamp</span><span class="delimiter">&quot;</span></span>: <span class="integer">1521126132897</span>, <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">error</span><span class="delimiter">&quot;</span></span>: <span class="error">N</span><span class="error">o</span><span class="error">n</span><span class="error">e</span>, <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">metadata</span><span class="delimiter">&quot;</span></span>: { <i class="conum" data-value="4"></i><b>(4)</b>
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">entity_url</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">https://this.is.beergarden:443/api/v1/requests/5aaa8af45991735bf1a6c123</span><span class="delimiter">&quot;</span></span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">public_url</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">https://this.is.beergarden:443/</span><span class="delimiter">&quot;</span></span>
+    },
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">payload</span><span class="delimiter">&quot;</span></span>: {
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">5aaa8af45991735bf1a6c123</span><span class="delimiter">&quot;</span></span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">command</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">say</span><span class="delimiter">&quot;</span></span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">system</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">echo</span><span class="delimiter">&quot;</span></span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">system_version</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">1.0.0</span><span class="delimiter">&quot;</span></span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">instance_name</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">default</span><span class="delimiter">&quot;</span></span>
+    }
+}
+<span class="error">-</span><span class="error">-</span><span class="error">-</span><span class="error">-</span>
+<span class="error">&lt;</span><span class="integer">1</span><span class="error">&gt;</span> <span class="error">A</span><span class="error">l</span><span class="error">l</span> <span class="error">e</span><span class="error">v</span><span class="error">e</span><span class="error">n</span><span class="error">t</span><span class="error">s</span> <span class="error">w</span><span class="error">i</span><span class="error">l</span><span class="error">l</span> <span class="error">h</span><span class="error">a</span><span class="error">v</span><span class="error">e</span> <span class="error">a</span> <span class="error">n</span><span class="error">a</span><span class="error">m</span><span class="error">e</span>
+<span class="error">&lt;</span><span class="integer">2</span><span class="error">&gt;</span> <span class="error">A</span><span class="error">l</span><span class="error">l</span> <span class="error">e</span><span class="error">v</span><span class="error">e</span><span class="error">n</span><span class="error">t</span><span class="error">s</span> <span class="error">w</span><span class="error">i</span><span class="error">l</span><span class="error">l</span> <span class="error">h</span><span class="error">a</span><span class="error">v</span><span class="error">e</span> <span class="error">a</span> <span class="error">t</span><span class="error">i</span><span class="error">m</span><span class="error">e</span><span class="error">s</span><span class="error">t</span><span class="error">a</span><span class="error">m</span><span class="error">p</span> <span class="error">(</span><span class="error">m</span><span class="error">i</span><span class="error">l</span><span class="error">l</span><span class="error">i</span><span class="error">s</span><span class="error">e</span><span class="error">c</span><span class="error">o</span><span class="error">n</span><span class="error">d</span><span class="error">s</span> <span class="error">s</span><span class="error">i</span><span class="error">n</span><span class="error">c</span><span class="error">e</span> <span class="error">t</span><span class="error">h</span><span class="error">e</span> <span class="error">e</span><span class="error">p</span><span class="error">o</span><span class="error">c</span><span class="error">h</span><span class="error">)</span>
+<span class="error">&lt;</span><span class="integer">3</span><span class="error">&gt;</span> <span class="error">A</span><span class="error">l</span><span class="error">l</span> <span class="error">e</span><span class="error">v</span><span class="error">e</span><span class="error">n</span><span class="error">t</span><span class="error">s</span> <span class="error">w</span><span class="error">i</span><span class="error">l</span><span class="error">l</span> <span class="error">h</span><span class="error">a</span><span class="error">v</span><span class="error">e</span> <span class="error">a</span><span class="error">n</span> <span class="error">e</span><span class="error">r</span><span class="error">r</span><span class="error">o</span><span class="error">r</span> <span class="error">f</span><span class="error">l</span><span class="error">a</span><span class="error">g</span> <span class="error">(</span><span class="error">b</span><span class="error">o</span><span class="error">o</span><span class="error">l</span><span class="error">e</span><span class="error">a</span><span class="error">n</span>, <span class="error">N</span><span class="error">o</span><span class="error">n</span><span class="error">e</span> <span class="error">b</span><span class="error">e</span><span class="error">i</span><span class="error">n</span><span class="error">g</span> <span class="error">e</span><span class="error">q</span><span class="error">u</span><span class="error">i</span><span class="error">v</span><span class="error">a</span><span class="error">l</span><span class="error">e</span><span class="error">n</span><span class="error">t</span> <span class="error">t</span><span class="error">o</span> <span class="error">F</span><span class="error">a</span><span class="error">l</span><span class="error">s</span><span class="error">e</span><span class="error">)</span>
+<span class="error">&lt;</span><span class="integer">4</span><span class="error">&gt;</span> <span class="error">E</span><span class="error">v</span><span class="error">e</span><span class="error">n</span><span class="error">t</span><span class="error">s</span> <span class="error">m</span><span class="error">a</span><span class="error">y</span> <span class="error">h</span><span class="error">a</span><span class="error">v</span><span class="error">e</span> <span class="error">a</span> <span class="error">m</span><span class="error">e</span><span class="error">t</span><span class="error">a</span><span class="error">d</span><span class="error">a</span><span class="error">t</span><span class="error">a</span> <span class="error">f</span><span class="error">i</span><span class="error">e</span><span class="error">l</span><span class="error">d</span><span class="error">.</span> <span class="error">T</span><span class="error">h</span><span class="error">i</span><span class="error">s</span> <span class="error">w</span><span class="error">i</span><span class="error">l</span><span class="error">l</span> <span class="error">c</span><span class="error">o</span><span class="error">n</span><span class="error">t</span><span class="error">a</span><span class="error">i</span><span class="error">n</span> <span class="error">'</span><span class="error">e</span><span class="error">x</span><span class="error">t</span><span class="error">r</span><span class="error">a</span><span class="error">'</span> <span class="error">u</span><span class="error">s</span><span class="error">e</span><span class="error">f</span><span class="error">u</span><span class="error">l</span> <span class="error">i</span><span class="error">n</span><span class="error">f</span><span class="error">o</span><span class="error">r</span><span class="error">m</span><span class="error">a</span><span class="error">t</span><span class="error">i</span><span class="error">o</span><span class="error">n</span>, <span class="error">b</span><span class="error">u</span><span class="error">t</span> <span class="error">w</span><span class="error">i</span><span class="error">l</span><span class="error">l</span> <span class="error">n</span><span class="error">o</span><span class="error">r</span><span class="error">m</span><span class="error">a</span><span class="error">l</span><span class="error">l</span><span class="error">y</span> <span class="error">i</span><span class="error">n</span><span class="error">c</span><span class="error">l</span><span class="error">u</span><span class="error">d</span><span class="error">e</span> <span class="error">a</span><span class="error">t</span> <span class="error">t</span><span class="error">h</span><span class="error">e</span> <span class="error">t</span><span class="error">h</span><span class="error">e</span> <span class="error">p</span><span class="error">u</span><span class="error">b</span><span class="error">l</span><span class="error">i</span><span class="error">c</span> <span class="error">u</span><span class="error">r</span><span class="error">l</span> <span class="error">o</span><span class="error">f</span> <span class="error">t</span><span class="error">h</span><span class="error">e</span> <span class="error">B</span><span class="error">e</span><span class="error">e</span><span class="error">r</span> <span class="error">G</span><span class="error">a</span><span class="error">r</span><span class="error">d</span><span class="error">e</span><span class="error">n</span> <span class="error">t</span><span class="error">h</span><span class="error">a</span><span class="error">t</span> <span class="error">g</span><span class="error">e</span><span class="error">n</span><span class="error">e</span><span class="error">r</span><span class="error">a</span><span class="error">t</span><span class="error">e</span><span class="error">d</span> <span class="error">t</span><span class="error">h</span><span class="error">e</span> <span class="error">E</span><span class="error">v</span><span class="error">e</span><span class="error">n</span><span class="error">t</span><span class="error">.</span> <span class="error">E</span><span class="error">v</span><span class="error">e</span><span class="error">n</span><span class="error">t</span><span class="error">s</span> <span class="error">t</span><span class="error">h</span><span class="error">a</span><span class="error">t</span> <span class="error">r</span><span class="error">e</span><span class="error">l</span><span class="error">a</span><span class="error">t</span><span class="error">e</span> <span class="error">t</span><span class="error">o</span> <span class="error">a</span> <span class="error">s</span><span class="error">p</span><span class="error">e</span><span class="error">c</span><span class="error">i</span><span class="error">f</span><span class="error">i</span><span class="error">c</span> <span class="error">e</span><span class="error">n</span><span class="error">t</span><span class="error">i</span><span class="error">t</span><span class="error">y</span> <span class="error">w</span><span class="error">i</span><span class="error">l</span><span class="error">l</span> <span class="error">a</span><span class="error">l</span><span class="error">s</span><span class="error">o</span> <span class="error">i</span><span class="error">n</span><span class="error">c</span><span class="error">l</span><span class="error">u</span><span class="error">d</span><span class="error">e</span> <span class="error">a</span> <span class="error">u</span><span class="error">r</span><span class="error">l</span> <span class="error">t</span><span class="error">h</span><span class="error">a</span><span class="error">t</span> <span class="error">c</span><span class="error">a</span><span class="error">n</span> <span class="error">b</span><span class="error">e</span> <span class="error">u</span><span class="error">s</span><span class="error">e</span><span class="error">d</span> <span class="error">t</span><span class="error">o</span> <span class="error">r</span><span class="error">e</span><span class="error">t</span><span class="error">r</span><span class="error">i</span><span class="error">e</span><span class="error">v</span><span class="error">e</span> <span class="error">t</span><span class="error">h</span><span class="error">e</span> <span class="error">f</span><span class="error">u</span><span class="error">l</span><span class="error">l</span> <span class="error">e</span><span class="error">n</span><span class="error">t</span><span class="error">i</span><span class="error">t</span><span class="error">y</span> <span class="error">d</span><span class="error">e</span><span class="error">f</span><span class="error">i</span><span class="error">n</span><span class="error">i</span><span class="error">t</span><span class="error">i</span><span class="error">o</span><span class="error">n</span><span class="error">.</span>
+<span class="error">&lt;</span><span class="integer">5</span><span class="error">&gt;</span> <span class="error">A</span><span class="error">l</span><span class="error">l</span> <span class="error">e</span><span class="error">v</span><span class="error">e</span><span class="error">n</span><span class="error">t</span><span class="error">s</span> <span class="error">w</span><span class="error">i</span><span class="error">l</span><span class="error">l</span> <span class="error">h</span><span class="error">a</span><span class="error">v</span><span class="error">e</span> <span class="error">a</span> <span class="error">p</span><span class="error">a</span><span class="error">y</span><span class="error">l</span><span class="error">o</span><span class="error">a</span><span class="error">d</span><span class="error">.</span> <span class="error">T</span><span class="error">h</span><span class="error">e</span> <span class="error">s</span><span class="error">p</span><span class="error">e</span><span class="error">c</span><span class="error">i</span><span class="error">f</span><span class="error">i</span><span class="error">c</span> <span class="error">d</span><span class="error">a</span><span class="error">t</span><span class="error">a</span> <span class="error">i</span><span class="error">n</span><span class="error">c</span><span class="error">l</span><span class="error">u</span><span class="error">d</span><span class="error">e</span><span class="error">d</span> <span class="error">w</span><span class="error">i</span><span class="error">l</span><span class="error">l</span> <span class="error">v</span><span class="error">a</span><span class="error">r</span><span class="error">y</span> <span class="error">b</span><span class="error">a</span><span class="error">s</span><span class="error">e</span><span class="error">d</span> <span class="error">o</span><span class="error">n</span> <span class="error">e</span><span class="error">v</span><span class="error">e</span><span class="error">n</span><span class="error">t</span> <span class="error">t</span><span class="error">y</span><span class="error">p</span><span class="error">e</span><span class="error">.</span></code></pre>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="enabling-events"><a class="anchor" href="#enabling-events"></a>Enabling Events</h4>
 <div class="paragraph">
-<p>or add all the new files in a directory:</p>
+<p>Events are disabled by default, but they can be published to a RabbitMQ topic exchange and/or persisted to MongoDB.</p>
 </div>
-<div class="literalblock">
+<div class="sect4">
+<h5 id="mongo"><a class="anchor" href="#mongo"></a>Mongo</h5>
+<div class="paragraph">
+<p>To perist events to Mongo set the <code>event_persist_mongo</code> configuration option in Brew view to <code>True</code>:</p>
+</div>
+<div class="listingblock">
 <div class="content">
-<pre>git add tutorials/</pre>
+<pre class="CodeRay highlight"><code data-lang="json"><span class="error">c</span><span class="error">o</span><span class="error">n</span><span class="error">f</span><span class="error">i</span><span class="error">g</span><span class="error">.</span><span class="error">j</span><span class="error">s</span><span class="error">o</span><span class="error">n</span>
+<span class="error">-</span><span class="error">-</span><span class="error">-</span><span class="error">-</span>
+{
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">event_perist_mongo</span><span class="delimiter">&quot;</span></span>: <span class="error">T</span><span class="error">r</span><span class="error">u</span><span class="error">e</span>
+}
+<span class="error">-</span><span class="error">-</span><span class="error">-</span><span class="error">-</span></code></pre>
 </div>
 </div>
+</div>
+<div class="sect4">
+<h5 id="rabbitmq"><a class="anchor" href="#rabbitmq"></a>RabbitMQ</h5>
 <div class="paragraph">
-<p>Commit all files marked to be committed, including new files that were
-just added:</p>
+<p>To publish events to RabbitMQ set the <code>event_amq_virtual_host</code> and <code>event_amq_exchange</code> configuration options to valid values.</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>git commit -m "your message here"</pre>
+<pre class="CodeRay highlight"><code data-lang="json"><span class="error">c</span><span class="error">o</span><span class="error">n</span><span class="error">f</span><span class="error">i</span><span class="error">g</span><span class="error">.</span><span class="error">j</span><span class="error">s</span><span class="error">o</span><span class="error">n</span>
+<span class="error">-</span><span class="error">-</span><span class="error">-</span><span class="error">-</span>
+{
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">event_amq_virtual_host</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">/</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">event_amq_exchange</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">beergarden_event</span><span class="delimiter">&quot;</span></span>
+}
+<span class="error">-</span><span class="error">-</span><span class="error">-</span><span class="error">-</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Make sure there are no files that are "untracked" or "modified":</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>git status</pre>
-</div>
+<p>WARN: Beer Garden doesn&#8217;t create an exchange for events. While you <em>could</em> use the normal Beer Garden request exchange we recommend you don&#8217;t. Instead, you should create a separate exchange. Check the RabbitMQ docs for instructions on how to do this.</p>
 </div>
 <div class="paragraph">
-<p>You should see:</p>
+<p>To consume from RabbitMQ, you&#8217;ll need to create a queue on the same virtual host as <code>event_amq_virtual_host</code> and then bind that queue to a routing key on the <code>event_amq_exchange</code>. To receive all events you can bind to the <code>#</code> routing key. If you want to filter which events your queue will receive there are some rules about how Beer Garden assigns routing keys to events:</p>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>nothing to commit (working directory clean)</pre>
+<div class="ulist">
+<ul>
+<li>
+<p>The default routing key is 'beergarden'. Events that don&#8217;t fit any other rules will use this.</p>
+</li>
+<li>
+<p>Request events will have a routing key of the form <code>request.&lt;system_name&gt;.&lt;mangled_system_version&gt;.&lt;instance_name&gt;</code>. Since RabbitMQ treats '.' as a delimiter the system version is mangled to replace all instances of '.' with '-'. So an example would be <code>request.echo.1-0-0.default</code>. If you were only interested in requests related to the 'echo' system you could bind your queue to the <code>request.echo.#</code> routing key.</p>
+</li>
+</ul>
 </div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="publishing-custom-events"><a class="anchor" href="#publishing-custom-events"></a>Publishing Custom Events</h4>
+<div class="paragraph">
+<p>WARN: This is a beta capability</p>
 </div>
 <div class="paragraph">
-<p>Now you are ready to deploy</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="deploying-the-site-to-github-pages"><a class="anchor" href="#deploying-the-site-to-github-pages"></a>Deploying the site to Github Pages</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>TODO: Fill this out</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="install-awestruct"><a class="anchor" href="#install-awestruct"></a>Install Awestruct</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>First, install <a href="https://rvm.io/rvm/install">RVM</a>.</p>
-</div>
-<div class="paragraph">
-<p>Next, simply <code>cd</code> into this directory.</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>cd /path/to/beer-garden.io/</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This will activate <code>rvm</code> for <code>ruby-2.3.1@beer-garden.io</code></p>
-</div>
-<div class="paragraph">
-<p>At this point, you could install Awestruct directly, but since the site build
-has some additional dependencies, it&#8217;s best to let bundler handle the
-installation. Bundler will also ensure that you are using the correct versions
-of each gem when you run Awestruct.</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>bundle install</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You&#8217;re now Awestruct!</p>
+<p>It&#8217;s possible to publish your own events. Just POST a valid Event to the <code>/api/vbeta/events</code> endpoint. The brewtils EasyClient <code>publish_event</code> method can help with this.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-14 16:03:11 EDT
+Last updated 2018-03-15 12:56:07 EDT
 </div>
 </div>
-<script>
-!function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m);}(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-113442079-2','auto'),ga('send','pageview');
-</script>
 </body>
 </html>
