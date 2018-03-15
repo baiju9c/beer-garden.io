@@ -76,10 +76,10 @@ gtag('config', 'UA-113442079-2');</script><body class="antialiased"><div class="
 <div class="title">event.json</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="json">{
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">REQUEST_CREATED</span><span class="delimiter">&quot;</span></span>, <i class="conum" data-value="1"></i><b>(1)</b>
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">timestamp</span><span class="delimiter">&quot;</span></span>: <span class="integer">1521126132897</span>, <i class="conum" data-value="2"></i><b>(2)</b>
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">error</span><span class="delimiter">&quot;</span></span>: <span class="error">N</span><span class="error">o</span><span class="error">n</span><span class="error">e</span>, <i class="conum" data-value="3"></i><b>(3)</b>
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">metadata</span><span class="delimiter">&quot;</span></span>: { <i class="conum" data-value="4"></i><b>(4)</b>
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">REQUEST_CREATED</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">timestamp</span><span class="delimiter">&quot;</span></span>: <span class="integer">1521126132897</span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">error</span><span class="delimiter">&quot;</span></span>: <span class="error">N</span><span class="error">o</span><span class="error">n</span><span class="error">e</span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">metadata</span><span class="delimiter">&quot;</span></span>: {
         <span class="key"><span class="delimiter">&quot;</span><span class="content">entity_url</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">https://this.is.beergarden:443/api/v1/requests/5aaa8af45991735bf1a6c123</span><span class="delimiter">&quot;</span></span>,
         <span class="key"><span class="delimiter">&quot;</span><span class="content">public_url</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">https://this.is.beergarden:443/</span><span class="delimiter">&quot;</span></span>
     },
@@ -93,29 +93,13 @@ gtag('config', 'UA-113442079-2');</script><body class="antialiased"><div class="
 }</code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>All events will have a name</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>All events will have a timestamp (milliseconds since the epoch)</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>All events will have an error flag (boolean, None being equivalent to False)</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Events may have a metadata field. This will contain 'extra' useful information, but will normally include at the the public url of the Beer Garden that generated the Event. Events that relate to a specific entity will also include a url that can be used to retrieve the full entity definition.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>All events will have a payload. The specific data included will vary based on event type.</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Some things to notice:
+* All events will have a name
+* All events will have a timestamp (milliseconds since the epoch)
+* All events will have an error flag (boolean, None being equivalent to False)
+* Events may have a metadata field. This will contain 'extra' useful information, but will normally include at the the public url of the Beer Garden that generated the Event. Events that relate to a specific entity will also include a url that can be used to retrieve the full entity definition.
+* All events will have a payload. The specific data included will vary based on event type.</p>
 </div>
 </div>
 <div class="sect3">
