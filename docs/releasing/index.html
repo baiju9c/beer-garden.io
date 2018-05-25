@@ -1,0 +1,125 @@
+<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8 ]><!--><html class="no-js" lang="en"><!--<![endif]--><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="IE=edge"><link rel="stylesheet" href="/stylesheets/styles.css"><script src="/javascripts/jquery.js"></script><script src="/javascripts/bootstrap.min.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-113442079-2"></script><title>Beer Garden Documentation</title></head><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-113442079-2');</script><body class="antialiased"><div class="bootstrap"><nav class="navbar navbar-default navbar-fixed-top" role="navigation"><div class="container"><div class="navbar-header"><button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false"><span class="sr-only">Toggle Navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="/"><img src="images/bg-banner.png">Beer Garden</img></a></div><div class="collapse navbar-collapse" id="navbar-collapse-1"><ul class="nav navbar-nav navbar-right"><li><a href="/">Home</a></li><li class="divider"></li><li><a href="https://github.com/beer-garden/beer-garden">Code</a></li><li class="divider"></li><li><a href="https://gitter.im/beer-garden-io/Lobby">Discuss</a></li><li class="divider"></li><li><a href="/docs/">Docs</a></li></ul></div></div></nav><main><div class="bootstrap masthead"><div class="container"><h2 class="hero">Releasing Beergarden</h2></div></div><div class="bootstrap container"><div class="row top-buffer"><div class="col-lg-4"><div class="col-lg-12"><div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups"><div class="btn-group mr-2" role="group" aria-label="First group"><button class="btn btn-default toggle-navigation" type="button" href="#"><span class="toggle-target"><i class="fa fa-toggle-on"></i><i class="fa fa-toggle-off"></i> Nav</span></button></div><div class="btn-group-mr-2 pull-right" role="group" aria-label="First Group"><a class="btn btn-default" href="https://github.com/beer-garden/beer-garden.io/edit/master//docs/releasing.adoc">Edit</a><a class="btn btn-default" href="https://github.com/beer-garden/beer-garden.io/raw/master//docs/releasing.adoc">Raw</a><a class="btn btn-default" href="https://github.com/beer-garden/beer-garden.io/commits/master//docs/releasing.adoc">History</a></div></div></div><div class="col-lg-12 navigation"><div id="toc" class="toc"><div class="title" id="toctitle">Table of Contents</div><ul class="sectlevel1">
+<li><a href="#libraries">Libraries</a></li>
+<li><a href="#docker">Docker</a>
+<ul class="sectlevel2">
+<li><a href="#example-plugins">Example plugins</a></li>
+<li><a href="#brew-view-bartender">Brew-view / Bartender</a></li>
+<li><a href="#beer-garden">Beer-garden</a></li>
+</ul>
+</li>
+</ul></div></div></div><div class="col-lg-8" id="docContent"><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is intended as a guide / checklist for releasing a new versions of Beergarden things. It&#8217;s aimed at the Beergarden maintainers.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="libraries"><a class="anchor" href="#libraries"></a>Libraries</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This one is pretty easy. Applies to these:
+- brewtils
+- bg-utils
+- brew-view
+- bartender</p>
+</div>
+<div class="paragraph">
+<p>Bump the version in <code>_version.py</code>. Make a new commit with a message that&#8217;s <strong>only</strong> the new version (this commit message shows up on the Github releases page). Then create and push a new tag with the version number (<strong>only</strong> the version number - get that extra 'v' out of here).</p>
+</div>
+<div class="paragraph">
+<p>Travis will run the tests and then build and deploy the source and wheel distributions to pypi.org.</p>
+</div>
+<div class="paragraph">
+<p>That&#8217;s it!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="docker"><a class="anchor" href="#docker"></a>Docker</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is a little more involved at the moment. Hopefully this&#8217;ll get automated more soon.</p>
+</div>
+<div class="sect2">
+<h3 id="example-plugins"><a class="anchor" href="#example-plugins"></a>Example plugins</h3>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>except this one is actually super easy. Just push to Github master branch. The docker image is built and deployed every time.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="brew-view-bartender"><a class="anchor" href="#brew-view-bartender"></a>Brew-view / Bartender</h3>
+<div class="paragraph">
+<p>This requires some effort. We need to build and tag versions for Python 2 and Python 3 and update the <code>latest</code> tags. Adjust this for your specific version and then push all the images:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>docker build -t bgio/brew-view:2.3.6 --build-arg VERSION=2.3.6 -f Dockerfile .
+docker tag bgio/brew-view:2.3.6 bgio/brew-view:latest
+
+docker build -t bgio/brew-view:2.3.6-python2 --build-arg VERSION=2.3.6 -f Dockerfile.2 .
+docker tag bgio/brew-view:2.3.6-python2 bgio/brew-view:latest-python2</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="beer-garden"><a class="anchor" href="#beer-garden"></a>Beer-garden</h3>
+<div class="paragraph">
+<p>This is the most labor-intensive.</p>
+</div>
+<div class="paragraph">
+<p>First, UPDATE THE CHANGELOG.</p>
+</div>
+<div class="paragraph">
+<p>In the <code>beer-garden/beer-garden</code> repo bump the version in <code>resources/version</code>.</p>
+</div>
+<div class="paragraph">
+<p>Then you need to update the submodule commits to the new tags. So if there&#8217;s a new bartender and brew-view do this, starting at the beer-garden repo root:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>cd bartender
+git pull <newest bartender tag>
+
+cd ../brew-view
+git pull <newest brew-view tag>
+
+git add bartender brew-view</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Do that for:
+- brewtils
+- bg-utils
+- brew-view
+- bartender</p>
+</div>
+<div class="paragraph">
+<p>Next MAKE SURE YOU UPDATED THE CHANGELOG.</p>
+</div>
+<div class="paragraph">
+<p>At this point you should have the new commits and version file staged. Make a commit with a message that&#8217;s only the new version. Then make a tag with the same message and push both to Github.</p>
+</div>
+<div class="paragraph">
+<p>Finally, you&#8217;ll need to build the RPMs. Currently we only care about building the Python 2 version, but you&#8217;ll need to build for Centos 6 and 7:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>python bin/build.py --distribution centos6 --python python2
+python bin/build.py --distribution centos7 --python python2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We don&#8217;t have a good place to put these right now. If you want to make a real 'Release' on Github you can add them as assets there.</p>
+</div>
+</div>
+</div>
+</div></div><hr></div></div></main></div><footer id="bgfooter"><div class="container"><div class="row"><div class="col-sm-3"><h5>Get Started</h5><ul><li><a href="/">Home</a></li><li><a href="https://github.com/beer-garden/beer-garden/blob/master/CONTRIBUTING.md">Contribute</a></li></ul></div><div class="col-sm-3"><h5>About us</h5><ul><li><a href="https://github.com/beer-garden/beer-garden/blob/master/AUTHORS.md">Contributors</a></li><li><a href="/news">News</a></li></ul></div><div class="col-sm-3"><h5>Support</h5><ul><li><a href="https://gitter.im/beer-garden-io/Lobby">Gitter</a></li></ul></div><div class="col-sm-3 info"><h5>Information</h5><p>Composed in AsciiDoc. Styled by bootstrap. Baked with Awestruct.</p></div></div></div><div class="social-networks"><a class="github" href="https://github.com/beer-garden/beer-garden"><i class="fa fa-github"></i></a><a class="gitter" href="https://gitter.im/beer-garden-io/Lobby"><i class="fa fa-gitter"></i></a></div><div class="footer-copyright"><p>© Beer Garden Project 2018.</p></div></footer></body><script>$('.toggle-navigation').click(function() { $('.navigation').toggle(); $('#docContent').toggleClass('col-lg-8'); $('#docContent').toggleClass('col-lg-12'); $('#docContent').toggleClass('top-buffer'); $('.toggle-target').toggleClass('off'); });</script>
