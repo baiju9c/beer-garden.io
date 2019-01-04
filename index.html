@@ -5,102 +5,55 @@ gtag('js', new Date());
 gtag('config', 'UA-113442079-2');</script><body class="antialiased"><div class="bootstrap"><nav class="navbar navbar-default navbar-fixed-top" role="navigation"><div class="container"><div class="navbar-header"><button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false"><span class="sr-only">Toggle Navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="/"><img src="/images/bg-banner.png">Beer Garden</img></a></div><div class="collapse navbar-collapse" id="navbar-collapse-1"><ul class="nav navbar-nav navbar-right"><li><a href="/">Home</a></li><li class="divider"></li><li><a href="https://github.com/beer-garden/beer-garden">Code</a></li><li class="divider"></li><li><a href="https://gitter.im/beer-garden-io/Lobby">Discuss</a></li><li class="divider"></li><li><a href="/docs/">Docs</a></li></ul></div></div></nav><main><div class="bootstrap masthead"><div class="container"><img src="images/logo-white.png"><p class="lead">A powerful plugin framework for converting your functions into composable, discoverable, production-ready services with minimal overhead.</p><div class="col-md-3 col-md-offset-3"><a class="btn btn-default btn-lg btn-nowrap" role="button" href="/docs/plugin-developer-guide/"><span class="pull-left"><i class="fa fa-pencil">  Start Writing Plugins!</i></span></a></div><div class="col-md-3"><a class="btn btn-default btn-lg btn-nowrap" role="button" href="https://github.com/beer-garden/beer-garden"><span class="pull-left"><i class="fa fa-github">  Checkout Code</i></span></a></div></div></div><div id="content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Beer Garden is a plugin framework that helps developers to create useful,
-streamlined, event-driven applications in a composable, and easily
-extensible way. Beer Garden is written in Python and has several packaging
-formats including python distributions, RPMs, and docker images. Beer Garden is open
-source, hosted on GitHub and is released under the MIT license.</p>
+<p>Imagine if writing composable software services was as easy as writing a class in your favorite language with your favorite text editor. And sharing was as easy as running your main method.</p>
 </div>
-<div class="ulist compact">
-<div class="title">Key Documentation</div>
-<ul>
-<li>
-<p><a href="docs/what-is-beergarden/">What is Beer Garden?</a></p>
-</li>
-<li>
-<p><a href="docs/plugin-developer-guide/">Plugin Developer Guide</a></p>
-</li>
-<li>
-<p><a href="docs/installation-guides/">Installation Guides</a></p>
-</li>
-<li>
-<p><a href="docs/api-users-guide/">API Users Guide</a></p>
-</li>
-<li>
-<p><a href="docs/user-manual/">User Manual</a></p>
-</li>
-</ul>
+<div class="paragraph">
+<p><em>It <strong>can</strong> be.</em></p>
+</div>
+<div class="paragraph">
+<p>That&#8217;s the main idea behind Beer Garden. So much of software development is tangled in the weeds of standing up services, getting messages from one component to another, creating UIs, writing documentation, and concurrently supporting multiple versions. We want to change that.</p>
+</div>
+<div class="paragraph">
+<p>Beer Garden makes it easy to turn your functions into REST interfaces that are ready for production use, in a way that&#8217;s accessible to anyone that can write a function. It creates all the boilerplate and infrastructure needed to turn that function into a type-safe, discoverable REST interface and an easy-to-use webform-based UI.</p>
+</div>
+<div class="paragraph">
+<p>If that sounds interesting go ahead and check out the <a href="docs/quickstart">Quickstart section</a>!</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="beer-garden-in-a-nutshell"><a class="anchor" href="#beer-garden-in-a-nutshell"></a>Beer Garden in a Nutshell</h2>
+<h2 id="look-at-me"><a class="anchor" href="#look-at-me"></a>Look at me!</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Beer Garden makes it easy to turn your functions into fully functional ReST interfaces that are ready for production use.  In short, the goal is to take anybody that knows how to write a function, and create all the other boilerplate code for them. This includes backing that function by a type-safe, discoverable, ReST interface and a fully functional web form-based interface that is easy-to-use for developers and end-users alike.</p>
-</div>
 <div class="paragraph">
 <p><span class="image"><img src="./images/demo.gif" alt="Preview Plugin to HTML Form Screenshot"></span></p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="requirements"><a class="anchor" href="#requirements"></a>Requirements</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Beer Garden depends on a few external services and requires the following to run:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Python (2.7 or &gt;= 3.5)</p>
-</li>
-<li>
-<p>Connectivity to MongoDB (&gt;= 3.2.0)</p>
-</li>
-<li>
-<p>Connectivity to RabbitMQ (&gt;= 3)</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="installation"><a class="anchor" href="#installation"></a>Installation</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Beer Garden can be installed using <code>pip</code>, <code>yum</code>, <code>docker</code> or <code>docker-compose</code>. Check out our <a href="docs/installation-guides/">Installation Guides</a> for more information on the different ways to install Beer Garden.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-You probably noticed that beer-garden needs MongoDB and RabbitMQ to work. That&#8217;s why we recommend using <code>docker-compose</code> if you want to get up and running quickly - the compose configuration will handle those things for you.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="usage"><a class="anchor" href="#usage"></a>Usage</h2>
+<h2 id="further-reading"><a class="anchor" href="#further-reading"></a>Further Reading</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>If you&#8217;re a developer and want to get your feet wet, we definitely recommend checking out the <a href="docs/quickstart">Quickstart section</a>.</p>
+<p>If you&#8217;re still not quite sure what Beer Garden is or what it can do for you there&#8217;s more information in <a href="docs/what-is-beergarden">What is Beer Garden?</a></p>
 </li>
 <li>
-<p>If you&#8217;re interested in administering your Beer Garden instance, the <a href="docs/installation-guides/">Installation Guides</a> have advice for administering your installations.</p>
+<p>If you&#8217;re trying to get up and running as quickly as possible then the <a href="docs/quickstart">Quickstart section</a> is for you</p>
 </li>
 <li>
-<p>If you already have Beer Garden and you want to figure out how to write plugins, checkout the <a href="docs/plugin-developer-guide">Plugin Developer Guide</a> for a detailed run-down of creating your very own plugins.</p>
+<p>If you&#8217;re interested in administering a Beer Garden the <a href="docs/installation-guides/">Installation Guides</a> will be helpful in getting started, and the <a href="docs/configuration">Configuration Guide</a> will help with configuration</p>
 </li>
 <li>
-<p>If you already have Beer Garden and you already have plugins and you just want an easy way to use those plugins be sure to check out our <a href="docs/api-users-guide">API Users Guide</a> this will go over our REST Interface as well as python bindings that we provide.</p>
+<p>If you&#8217;re looking for guidance on writing plugins check out the <a href="docs/plugin-developer-guide">Plugin Developer Guide</a> for a detailed rundown</p>
+</li>
+<li>
+<p>If you&#8217;d like to better understand how to interact with Beer Garden (and learn the magic behind the Python bindings) take a look at the <a href="docs/api-users-guide">API Guide</a></p>
+</li>
+<li>
+<p>If you want to understand how the different components of Beer Garden work and interact then the <a href="docs/architecture">Architecture Guide</a> is the place to look</p>
+</li>
+<li>
+<p>For documentation on the Python bindings head over to <a href="https://brewtils.readthedocs.io">Read the Docs</a></p>
 </li>
 </ul>
 </div>
@@ -110,7 +63,7 @@ You probably noticed that beer-garden needs MongoDB and RabbitMQ to work. That&#
 <h2 id="getting-help"><a class="anchor" href="#getting-help"></a>Getting Help</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>We want Beer Garden to help you <em>easily</em> write and use plugins. If there&#8217;s anything that&#8217;s unclear or difficult (or broken!) we want to know about it! Here are the best ways to get in touch with us:</p>
+<p>We want Beer Garden to make your life easier. If there&#8217;s anything that&#8217;s unclear or difficult (or broken!) we want to know about it! Here are the best ways to get in touch with us:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -118,7 +71,7 @@ You probably noticed that beer-garden needs MongoDB and RabbitMQ to work. That&#
 <p>Talk to us in <a href="https://gitter.im/beer-garden-io/Lobby">Gitter</a></p>
 </li>
 <li>
-<p>Sumbit an issue to the <a href="https://github.com/beer-garden/beer-garden/issues">Issue Tracker</a></p>
+<p>Submit an issue to the <a href="https://github.com/beer-garden/beer-garden/issues">Issue Tracker</a></p>
 </li>
 </ul>
 </div>
@@ -183,10 +136,10 @@ You probably noticed that beer-garden needs MongoDB and RabbitMQ to work. That&#
 <h2 id="credits"><a class="anchor" href="#credits"></a>Credits</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A huge shoutout to <a href="https://asciidoctor.org">the Asciidoctor Project</a>. This website is built with AsciiDoctor and was heavily influenced by the Asciidoctor website. It really is the best way to write documentation and we highly recommend you check it out!</p>
+<p>A huge shout-out to <a href="https://asciidoctor.org">the Asciidoctor Project</a>. This website is built with AsciiDoctor and was heavily influenced by the Asciidoctor website. It really is the best way to write documentation and we highly recommend you check it out!</p>
 </div>
 <div class="paragraph">
-<p>This website is hosted by <a href="https://pages.github.com/">GitHub Pages</a>. It makes deployment easy and cheap. You can use it for blogs, or documentation like this. You should really check it out if you haven&#8217;t.</p>
+<p>This website is hosted by <a href="https://pages.github.com/">GitHub Pages</a>. It makes deployment easy and cheap. You can use it for blogs or documentation like this. Definitely take a look!</p>
 </div>
 </div>
 </div>
